@@ -54,7 +54,7 @@ class Database extends CI_Model
     public function report($id)
     {
         $result = $this->db->where('id_node', $id)->get('node')->result_array();
-        if (count($result))
+        if (count($result) && $result[0]['reports'] >= 0)
         {
             $this->db->where('id_node',$result[0]['id_node'])->update('node',array('reports'=>$result[0]['reports'] + 1));
         }
