@@ -51,17 +51,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     .option.s1:hover {
-        background-color: #4D3636;
-        color: #E6A1A1;
-        border-color: #E6A1A1;
+        background-color: #45364D;
+        color: #CFA1E6;
+        border-color: #CFA1E6;
     }
 
     .option.s2:hover {
-        background-color: green;
+        background-color: #364D3E;
+        color: #A1E6B8;
+        border-color: #A1E6B8;
     }
 
     .option.s3:hover {
-        background-color: blue;
+        background-color: #4D4736;
+        color: #E6D4A1;
+        border-color: #E6D4A1;
     }
 
     #action-input {
