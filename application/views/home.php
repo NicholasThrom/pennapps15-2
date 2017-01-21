@@ -10,8 +10,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </style>
 </head>
 <body>
-    <div>
-        <?php echo $node['description']; ?>
-    </div>
+    <?php echo $node['description']; ?>
+    New:
+    <input id = "action-input" name = "action"></input>
+    Result:
+    <input id = "description-input" = "description"></input>
+    <div id = "submit-new">Submit</div>
 </body>
+<script>
+$.ajax({
+    url: "<?php echo base_url(); ?>index.php/main/addNode",
+    type: "post",
+    data: {a: $("#action-input").value, d: $("#description-input").value}
+});
+</script>
 </html>
