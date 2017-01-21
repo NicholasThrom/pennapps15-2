@@ -18,7 +18,11 @@ class Database extends CI_Model
 
     public function addNode($parent, $action, $description)
     {
-        
+        if($this->doesExist($parent,$action))
+        {
+            return -1;
+        }
+
         $this->db->insert('node', array(
             'source_node' => $parent,
             'action' => htmlspecialchars($action),
@@ -32,6 +36,12 @@ class Database extends CI_Model
         $result = $this->db->where('source_node', $id)->get('node')->result_array();
         shuffle($result);
         return array_slice($result,0,min(count($result),3));
+    }
+
+    public function doesExist($id, $action)
+    {
+        $result = $this->db->where('source_node',$id)->where('action',$action)->get('node')->result_array();
+        return count($result) > 0;
     }
 }
 ?>
