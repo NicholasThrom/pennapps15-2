@@ -8,8 +8,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
     body {
-        background-color: #3C484D;
-        color: #C9F2FF;
+        background-color: #36414D;
+        color: #B3D9FF;
         font-family: "Lucida Console", Monaco, monospace;
         font-weight: 100;
     }
@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         margin-right: auto;
         text-align: center;
         margin-top: 10vh;
-        border: 1px solid #C9F2FF;
+        border: 1px solid #B3D9FF;
         padding: 1rem;
     }
 
@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     .option {
         width: 20vw;
-        border: 1px solid #C9F2FF;
+        border: 1px solid #B3D9FF;
         padding: 0.5rem;
         margin-left: auto;
         margin-right: auto;
@@ -53,12 +53,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     .option.s1:hover {
         background-color: red;
     }
+
     .option.s2:hover {
         background-color: green;
     }
+
     .option.s3:hover {
         background-color: blue;
     }
+
+    #action-input {
+        display: block;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #B3D9FF;
+        width: 20vw;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+    }
+
+    #description-input {
+        background-color: transparent;
+        outline: none;
+        border: none;
+    }
+
     </style>
 </head>
 <body>
