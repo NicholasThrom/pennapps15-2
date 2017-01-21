@@ -51,7 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     .option.s1:hover {
-        background-color: red;
+        background-color: #4D3636;
+        color: #E6A1A1;
+        border-color: #E6A1A1;
     }
 
     .option.s2:hover {
