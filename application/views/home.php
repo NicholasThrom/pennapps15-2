@@ -31,6 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         margin-left: auto;
         margin-right: auto;
         margin-top: 1rem;
+        cursor: pointer;
     }
     .option a {
         text-decoration: none;
