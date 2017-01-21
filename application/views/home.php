@@ -18,12 +18,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div id = "submit-new">Submit</div>
 </body>
 <script>
-$("#submit-new").click(function () {
-    $.ajax({
-        url: "<?php echo base_url(); ?>index.php/main/addNode",
-        type: "post",
-        data: {a: $("#action-input").value, d: $("#description-input").value}
+    $("#submit-new").click(function () {
+        $.ajax({
+            url: "<?php echo base_url(); ?>index.php/main/addNode",
+            type: "post",
+            data: {a: $("#action-input").value, d: $("#description-input").value}
+        });
     });
-});
 </script>
 </html>
