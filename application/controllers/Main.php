@@ -33,6 +33,7 @@ class Main extends CI_Controller
 
 		$data = array();
 		$data['node'] = $this->database->getNode($id_node);
+		$id_node = $data['node']['id_node'];
 		$data['id_node'] = $id_node;
 		$data['options'] = $this->database->getOptions($id_node);
 		$this->load->view("home", $data);
@@ -52,5 +53,10 @@ class Main extends CI_Controller
 		{
 			$this->database->report($this->input->post("i"));
 		}
+	}
+
+	public function trimTree()
+	{
+		echo "Deleted ".$this->database->removeFreeNodes()." nodes.";
 	}
 }
