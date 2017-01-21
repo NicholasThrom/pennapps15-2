@@ -34,8 +34,8 @@ class Database extends CI_Model
     public function getOptions($id)
     {
         $result = $this->db->where('source_node', $id)->get('node')->result_array();
-
-        return $result;
+        shuffle($result);
+        return array_slice($result,0,min(count($result),3));
     }
 }
 ?>
