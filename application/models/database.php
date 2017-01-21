@@ -6,12 +6,14 @@ class Database extends CI_Model
         $result = $this->db->where('id_node', $id)->get('node')->result_array();
         if (count($result))
         {
+            $this->db->where('id_node', $id)->update('node', array('clicks'=>$result[0]['clicks']+1));
             return $result[0];
         }
         // If the right ID does not exist:
         $result = $this->db->get('node')->result_array();
         if (count($result))
         {
+            $this->db->where('id_node', $id)->update('node', array('clicks'=>$result[0]['clicks']+1));
             return $result[0];
         }
     }
@@ -35,7 +37,12 @@ class Database extends CI_Model
     {
         $result = $this->db->where('source_node', $id)->get('node')->result_array();
         shuffle($result);
-        return array_slice($result,0,min(count($result),3));
+        $result = array_slice($result,0,min(count($result),3));
+        foreach($result as $res)
+        {
+            $this->db->where('id_node',$res['id_node'])->update('node',array('views'=>$res['views']+1));
+        }
+        return $result;
     }
 
     public function doesExist($id, $action)
