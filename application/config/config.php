@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://10.103.229.56:8888/pennapps15-2/';
+$config['base_url'] = 'http://locals:8888/pennapps15-2/';
 
 /*
 |--------------------------------------------------------------------------
