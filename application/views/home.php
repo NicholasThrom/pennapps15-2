@@ -7,6 +7,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title>Board</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
+    body {
+      background-color: #3C484D;
+      color: #C9F2FF;
+    }
+    #submit-new {
+      display: inline-block;
+    }
+    #submit-new:hover {
+      background-color: grey;
+    }
     </style>
 </head>
 <body>
