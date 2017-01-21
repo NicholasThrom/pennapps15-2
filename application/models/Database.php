@@ -65,5 +65,14 @@ class Database extends CI_Model
             $this->db->where('id_node',$result[0]['id_node'])->update('node',array('reports'=>$result[0]['reports'] + 1));
         }
     }
+
+    public function removeFreeNodes()
+    {
+        foreach($this->db->get('node')->result_array() as $node)
+        {
+            if(!doesIdExist($node['source_node']))
+                $this->db->where('id_node', $node['id_node'])->delete('node');
+        }
+    }
 }
 ?>
