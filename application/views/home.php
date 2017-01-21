@@ -108,9 +108,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     .warning {
-        color: #E6A1A1;
+        color: #E65C5C;
         font-size: 0.8rem;
-        margin-top: 0.2rem;
+        margin-top: 0.3rem;
         display: none;
     }
 
