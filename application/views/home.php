@@ -151,7 +151,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     d: $("#description-input").val(),
                     i: "<?php echo $id_node; ?>"
                 },
-                success: function (data) {window.location = "<?php echo base_url(); ?>?i=" + data;}
+                success: function (data) {if (data != -1) {window.location = "<?php echo base_url(); ?>?i=" + data;}}
             });
         }
     }
