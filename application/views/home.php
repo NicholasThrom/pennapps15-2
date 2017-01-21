@@ -14,16 +14,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         font-weight: 100;
         text-align: center;
     }
+
     .situation {
         width: 30vw;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
-        margin-top: 10vh;
+        margin-top: 0.3rem;
         border: 1px solid #B3D9FF;
         padding: 1rem;
         border-radius: 1rem;
     }
+
     .option {
         width: 20vw;
         border: 1px solid #B3D9FF;
@@ -33,6 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         margin-top: 1rem;
         cursor: pointer;
     }
+
     .option a {
         text-decoration: none;
         color: inherit;
@@ -40,21 +43,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         width: 100%;
         text-align: center;
     }
+
     .option.s1:hover {
         background-color: #45364D;
         color: #CFA1E6;
         border-color: #CFA1E6;
     }
+
     .option.s2:hover {
         background-color: #364D3E;
         color: #A1E6B8;
         border-color: #A1E6B8;
     }
+
     .option.s3:hover {
         background-color: #4D4736;
         color: #E6D4A1;
         border-color: #E6D4A1;
     }
+
     .input {
         background-color: transparent;
         outline: none;
@@ -71,10 +78,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         padding: 0.3rem;
         resize: none;
     }
+
     #action-input {
         display: block;
         margin-top: 3rem;
     }
+
     #description-input {
         display: none;
         border-radius: 1rem;
@@ -85,6 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         padding-bottom: 0.5rem;
         vertical-align:middle;
     }
+
     #submit-new {
         display: none;
         margin-left: auto;
@@ -93,62 +103,98 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         margin-top: 1.5rem;
         opacity: 0;
     }
+
     #submit-new:hover {
         font-weight: 900;
     }
+
     #report {
         cursor: pointer;
+        width: 50%;
+        display: inline-block;
+        float: right;
+        text-align: right;
     }
+
     #report:hover {
         font-weight: 900;
     }
+
     #restart{
         cursor: pointer;
+        width: 50%;
+        display: inline-block;
+        float: left;
+        text-align: left;
     }
+
     #restart:hover {
         font-weight: 900;
     }
+
+    #buttons {
+        margin-left: auto;
+        margin-right: auto;
+        width: 30vw;
+        height: 1rem;
+        margin-top: 10vh;
+    }
+
     .warning {
         color: #E65C5C;
         font-size: 0.8rem;
         margin-top: 0.3rem;
         display: none;
     }
+
     ::-webkit-input-placeholder {
         color: #6B8199;
     }
+
     :-moz-placeholder {
         color: #6B8199;
     }
+
     ::-moz-placeholder {
         color: #6B8199;
     }
+
     :-ms-input-placeholder {
         color: #6B8199;
     }
     </style>
 </head>
 <body>
-    <div class = "situation">
-    <?php echo $node['description']; ?>
+    <div id = "buttons">
+        <div id = "report">Report</div>
+        <div id = "restart">Restart</div>
     </div>
+
+    <div class = "situation">
+        <?php echo $node['description']; ?>
+    </div>
+
     <?php $i = 0; foreach($options as $option) { $i++; ?>
         <div class = "option s<?php echo $i; ?>">
             <a href = "<?php echo base_url(); ?>?i=<?php echo $option['id_node']?>"><?php echo $option['action']; ?></a>
         </div>
     <?php } ?>
+
     <input maxlength = "31" class = "input" id = "action-input" placeholder = "action"></input>
+
     <div class = "warning" id = "action-repeat-warning"></div>
+
     <textarea maxlength = "1025" class = "input" id = "description-input" placeholder = "result"></textarea>
+
     <div id = "submit-new">Submit</div>
-    <div id = "report">Report</div>
-    <div id = "restart">Restart</div>
 </body>
 <script>
+
     var goToPage = function (id)
     {
         window.location = "<?php echo base_url(); ?>?i=" + id;
-    }
+    };
+
     var submit = function ()
     {
         if ($("#action-input").val().trim() != "" && $("#description-input").val().trim() != "")
@@ -175,6 +221,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             });
         }
     };
+
     var report = function ()
     {
         $.ajax({
@@ -183,23 +230,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             data: {
                 i: "<?php echo $id_node; ?>"
             },
-            success: function() {
+            success: function () {
+                $("#report").css("color", "#E65C5C");
+                $("*").click(function () {});
+                $("*").attr("href", "");
+                setTimeout(function () {goToPage(1);}, 1000);
             }
         });
     };
+
     var restart = function ()
     {
         goToPage(1);
     };
+
     $("#action-input").focus(function () {
         $("#description-input").css("display", "block");
         $("#description-input").animate({opacity: 1});
         $("#submit-new").css("display", "inline-block");
         $("#submit-new").animate({opacity: 1});
     });
+
     $("#submit-new").click(submit);
     $("#report").click(report);
     $("#restart").click(restart);
+
     $(document).keydown(function (event)
     {
         switch (event.keyCode)
