@@ -8,34 +8,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
     body {
-      background-color: #3C484D;
-      color: #C9F2FF;
+        background-color: #3C484D;
+        color: #C9F2FF;
+        font-family: "Lucida Console", Monaco, monospace;
+        font-weight: 100;
     }
+
+    .situation {
+        width: 30vw;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-top: 10vh;
+        border: 1px solid #C9F2FF;
+        padding: 1rem;
+    }
+
+
+
     #submit-new {
-      display: inline-block;
+        display: inline-block;
     }
     #submit-new:hover {
-      background-color: grey;
+        background-color: grey;
     }
+
     .option {
-      display: inline-block;
+        width: 20vw;
+        border: 1px solid #C9F2FF;
+        padding: 0.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
     }
-    #option1:hover {
-      background-color: red;
+
+    .option a {
+        text-decoration: none;
+        color: inherit;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
     }
-    #option2:hover {
-      background-color: green;
+
+    .option.1:hover {
+        background-color: red;
     }
-    #option3:hover {
-      background-color: blue;
+    .option.1:hover {
+        background-color: green;
+    }
+    .option.1:hover {
+        background-color: blue;
     }
     </style>
 </head>
 <body>
-    <?php echo $node['description']; ?> <br>
-    <div class = "option" id = "option1"> This is your first option </div> <br>
-    <div class = "option" id = "option2"> This is your second option </div> <br>
-    <div class = "option" id = "option3"> This is your third option </div> <br>
+    <div class = "situation">
+    <?php echo $node['description']; ?>
+    </div>
+    <?php $i = 0; foreach($options as $option) { $i++; ?>
+        <div class = "option <?php echo $i; ?>">
+            <a href = "<?php echo base_url(); ?>?i=<?php echo $option['id_node']?>"><?php echo $option['action']; ?></a>
+        </div>
+    <?php } ?>
     New:
     <input id = "action-input"></input>
     Result:
