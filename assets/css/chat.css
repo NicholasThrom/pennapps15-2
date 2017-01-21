@@ -1,0 +1,54 @@
+body {
+    margin: 0px;
+}
+
+::-webkit-scrollbar {
+    display:none;
+}
+
+#output-container {
+    height: calc(100vh - 3rem);
+    background-color: #000;
+    position: relative;
+}
+
+#output {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: -1rem;
+    padding-right: 2rem;
+    max-height: calc(100vh - 5em);
+}
+
+#input-container {
+    height: 3rem;
+    background-color: #000;
+    position: relative;
+}
+
+#symbol {
+    display: inline-block;
+    line-height: 3rem;
+    height: 3rem;
+    padding-left: 1rem;
+}
+
+#input {
+    display: inline-block;
+    height: 3rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    position: absolute;
+    right: -1rem;
+    padding-right: 2rem;
+    width: calc(100vw - 3rem);
+}
+
+#input-container, #input, #output {
+    color: white;
+    font-family: "Courier New", Courier, monospace;
+    overflow: scroll;
+    font-size: 1rem;
+}
