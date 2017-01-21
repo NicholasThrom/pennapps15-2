@@ -27,6 +27,8 @@ class Database extends CI_Model
             'action' => $action,
             'description' => $description
         ));
+
+        return $this->db->insert_id();
     }
 }
 ?>

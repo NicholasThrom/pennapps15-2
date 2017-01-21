@@ -34,13 +34,10 @@ class Main extends CI_Controller
 
 	public function addNode()
 	{
-		echo $this->input->get("a");
-		echo $this->input->get("d");
-		echo $this->input->get("i");
 
-		if ($this->input->get("a") != null && $this->input->get("d") != null && $this->input->get("i") != null)
+		if ($this->input->post("a") != null && $this->input->post("d") != null && $this->input->post("i") != null)
 		{
-			$this->database->addNode($this->input->get("i"), $this->input->get("a"), $this->input->get("d"));
+			echo $this->database->addNode($this->input->post("i"), $this->input->post("a"), $this->input->post("d"));
 		}
 	}
 }

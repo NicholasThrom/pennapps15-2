@@ -33,10 +33,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             url: "<?php echo base_url(); ?>index.php/main/addNode",
             type: "post",
             data: {
-                a: $("#action-input").value,
-                d: $("#description-input").value,
+                a: $("#action-input").val(),
+                d: $("#description-input").val(),
                 i: "<?php echo $id_node; ?>"
-            }
+            },
+            success: function (data) {window.location = "<?php echo base_url(); ?>?i=" + data;}
         });
     });
 </script>
