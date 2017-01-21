@@ -166,7 +166,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
     <div id = "buttons">
-        <div id = "report">Report</div>
+        <?php if ($node['reports'] >= 0) { ?>
+            <div id = "report">Report</div>
+        <?php } ?>
+        
         <div id = "restart">Restart</div>
     </div>
 

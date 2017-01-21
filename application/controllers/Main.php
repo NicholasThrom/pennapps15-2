@@ -26,6 +26,11 @@ class Main extends CI_Controller
 		$id_node = $this->input->get("i");
 		$id_node = $id_node != null ? $id_node : 1;
 
+		if ($id_node < 1)
+		{
+			$id_node = 1;
+		}
+
 		$data = array();
 		$data['node'] = $this->database->getNode($id_node);
 		$data['id_node'] = $id_node;
@@ -35,7 +40,6 @@ class Main extends CI_Controller
 
 	public function addNode()
 	{
-
 		if ($this->input->post("a") != null && $this->input->post("d") != null && $this->input->post("i") != null)
 		{
 			echo $this->database->addNode($this->input->post("i"), $this->input->post("a"), $this->input->post("d"));
