@@ -12,6 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         color: #B3D9FF;
         font-family: "Lucida Console", Monaco, monospace;
         font-weight: 100;
+        text-align: center;
     }
 
     .situation {
@@ -22,15 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         margin-top: 10vh;
         border: 1px solid #B3D9FF;
         padding: 1rem;
-    }
-
-
-
-    #submit-new {
-        display: inline-block;
-    }
-    #submit-new:hover {
-        background-color: grey;
+        border-radius: 1rem;
     }
 
     .option {
@@ -68,8 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         border-color: #E6D4A1;
     }
 
-    #action-input {
-        display: block;
+    .input {
         background-color: transparent;
         outline: none;
         border: none;
@@ -78,14 +70,65 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         margin-left: auto;
         margin-right: auto;
         margin-top: 1rem;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        text-align: center;
+        padding: 0.3rem;
+    }
+
+    #action-input {
+        display: block;
+        margin-top: 3rem;
     }
 
     #description-input {
+        display: none;
         background-color: transparent;
         outline: none;
         border: none;
+        border: 1px solid #B3D9FF;
+        width: 20vw;
+        min-height: 4rem;
+        margin-left: auto;
+        margin-right: auto;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        text-align: center;
+        border-radius: 1rem;
+        opacity: 0;
     }
 
+    #submit-new {
+        display: none;
+        margin-left: auto;
+        margin-right: auto;
+        cursor: pointer;
+        margin-top: 1rem;
+        opacity: 0;
+    }
+
+    #submit-new:hover {
+        font-weight: 900;
+    }
+
+
+    input::-webkit-input-placeholder {
+        color: #6B8199;
+    }
+
+    input:-moz-placeholder {
+        color: #6B8199;
+    }
+
+    input::-moz-placeholder {
+        color: #6B8199;
+    }
+
+    input:-ms-input-placeholder {
+        color: #6B8199;
+    }
     </style>
 </head>
 <body>
@@ -97,22 +140,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <a href = "<?php echo base_url(); ?>?i=<?php echo $option['id_node']?>"><?php echo $option['action']; ?></a>
         </div>
     <?php } ?>
-    <input id = "action-input"></input>
-    <input id = "description-input"></input>
+    <input class = "input" id = "action-input" placeholder = "action"></input>
+    <input class = "input" id = "description-input" placeholder = "result"></input>
     <div id = "submit-new">Submit</div>
 </body>
 <script>
-    $("#submit-new").click(function () {
-        $.ajax({
-            url: "<?php echo base_url(); ?>index.php/main/addNode",
-            type: "post",
-            data: {
-                a: $("#action-input").val(),
-                d: $("#description-input").val(),
-                i: "<?php echo $id_node; ?>"
-            },
-            success: function (data) {window.location = "<?php echo base_url(); ?>?i=" + data;}
-        });
+    var submit = function ()
+    {
+        if ($("#action-input").val().trim() != "" && $("#description-input").val().trim() != "")
+        {
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/main/addNode",
+                type: "post",
+                data: {
+                    a: $("#action-input").val(),
+                    d: $("#description-input").val(),
+                    i: "<?php echo $id_node; ?>"
+                },
+                success: function (data) {window.location = "<?php echo base_url(); ?>?i=" + data;}
+            });
+        }
+    }
+
+    $("#action-input").focus(function () {
+        $("#description-input").css("display", "block");
+        $("#description-input").animate({opacity: 1});
+        $("#submit-new").css("display", "inline-block");
+        $("#submit-new").animate({opacity: 1});
     });
+
+    $("#submit-new").click(submit);
+
+    $(document).keydown(function (event)
+    {
+        switch (event.keyCode)
+        {
+            case 13:
+                submit();
+                break;
+        }
+    });
+
+
 </script>
 </html>
