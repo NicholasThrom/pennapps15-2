@@ -17,14 +17,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     #submit-new:hover {
       background-color: grey;
     }
+    .option {
+      display: inline-block;
+    }
+    #option1:hover {
+      background-color: red;
+    }
+    #option2:hover {
+      background-color: green;
+    }
+    #option3:hover {
+      background-color: blue;
+    }
     </style>
 </head>
 <body>
-    <?php echo $node['description']; ?>
+    <?php echo $node['description']; ?> <br>
+    <div class = "option" id = "option1"> This is your first option </div> <br>
+    <div class = "option" id = "option2"> This is your second option </div> <br>
+    <div class = "option" id = "option3"> This is your third option </div> <br>
     New:
-    <input id = "action-input" name = "action"></input>
+    <input id = "action-input"></input>
     Result:
-    <input id = "description-input" = "description"></input>
+    <input id = "description-input"></input>
     <div id = "submit-new">Submit</div>
 </body>
 <script>
