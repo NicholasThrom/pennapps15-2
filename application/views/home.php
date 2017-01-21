@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Board</title>
+    <title>Endless Pathway</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
     body {
@@ -107,6 +107,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         font-weight: 900;
     }
 
+    .warning {
+        color: #E6A1A1;
+        font-size: 0.8rem;
+        margin-top: 0.2rem;
+        display: none;
+    }
 
     ::-webkit-input-placeholder {
         color: #6B8199;
@@ -135,6 +141,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     <?php } ?>
     <input maxlength = "31" class = "input" id = "action-input" placeholder = "action"></input>
+    <div class = "warning" id = "action-repeat-warning"></div>
     <textarea maxlength = "1025" class = "input" id = "description-input" placeholder = "result"></textarea>
     <div id = "submit-new">Submit</div>
 </body>
@@ -151,7 +158,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     d: $("#description-input").val(),
                     i: "<?php echo $id_node; ?>"
                 },
-                success: function (data) {if (data != -1) {window.location = "<?php echo base_url(); ?>?i=" + data;}}
+                success: function (data) {
+                    if (data != -1)
+                    {
+                        window.location = "<?php echo base_url(); ?>?i=" + data;
+                    }
+                    else
+                    {
+                        $("#action-repeat-warning").css("display", "block");
+                        $("#action-repeat-warning").html("The action \"" + $("#action-input").val() + "\" is already taken.");
+                    }
+                }
             });
         }
     }
