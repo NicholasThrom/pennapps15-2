@@ -37,7 +37,7 @@ class Database extends CI_Model
     {
         $result = $this->db->where('source_node', $id)->get('node')->result_array();
         shuffle($result);
-        $result = array_slice($result,0,min(count($result),3));
+        $result = array_slice($result, 0, min(count($result), 3));
         foreach($result as $res)
         {
             $this->db->where('id_node',$res['id_node'])->update('node',array('views'=>$res['views'] + 1));
