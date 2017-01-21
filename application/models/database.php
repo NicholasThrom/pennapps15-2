@@ -20,9 +20,13 @@ class Database extends CI_Model
         }
     }
 
-    public function addNode()
+    public function addNode($parent, $action, $description)
     {
-
+        $this->db->insert('node', array(
+            'source_node' => $parent,
+            'action' => $action,
+            'description' => $description
+        ));
     }
 }
 ?>

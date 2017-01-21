@@ -31,4 +31,16 @@ class Main extends CI_Controller
 		$data['id_node'] = $id_node;
 		$this->load->view("home", $data);
 	}
+
+	public function addNode()
+	{
+		echo $this->input->get("a");
+		echo $this->input->get("d");
+		echo $this->input->get("i");
+
+		if ($this->input->get("a") != null && $this->input->get("d") != null && $this->input->get("i") != null)
+		{
+			$this->database->addNode($this->input->get("i"), $this->input->get("a"), $this->input->get("d"));
+		}
+	}
 }
