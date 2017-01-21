@@ -35,7 +35,7 @@ class Main extends CI_Controller
 
 	public function addNode()
 	{
-
+		
 		if ($this->input->post("a") != null && $this->input->post("d") != null && $this->input->post("i") != null)
 		{
 			echo $this->database->addNode($this->input->post("i"), $this->input->post("a"), $this->input->post("d"));
