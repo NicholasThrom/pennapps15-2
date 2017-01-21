@@ -155,6 +155,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div id = "report">Report</div>
 </body>
 <script>
+    var goToPage = function (id)
+    {
+        window.location = "<?php echo base_url(); ?>?i=" + id;
+    }
+
     var submit = function ()
     {
         if ($("#action-input").val().trim() != "" && $("#description-input").val().trim() != "")
@@ -170,7 +175,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 success: function (data) {
                     if (data != -1)
                     {
-                        window.location = "<?php echo base_url(); ?>?i=" + data;
+                        goToPage(data);
                     }
                     else
                     {
@@ -182,7 +187,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     }
 
-    var report = function()
+    var report = function ()
     {
         $.ajax({
             url:"<?php echo base_url(); ?>index.php/main/fileReport",
@@ -190,7 +195,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             data: {
                 i: "<?php echo $id_node; ?>"
             },
-            success: function(data){
+            success: function(data) {
                 console.log(data);
             }
         });
@@ -215,7 +220,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 break;
         }
     });
-
 
 </script>
 </html>
