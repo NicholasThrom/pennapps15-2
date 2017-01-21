@@ -23,8 +23,8 @@ class Main extends CI_Controller
 
 	public function index()
 	{
-		$id_node = $this->
-		$id_node = 1;
+		$id_node = $this->input->get("i");
+		$id_node = $id_node != null ? $id_node : 1;
 
 		$data = array();
 		$data['node'] = $this->database->getNode($id_node);
