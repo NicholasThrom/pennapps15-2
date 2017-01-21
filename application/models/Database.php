@@ -51,6 +51,12 @@ class Database extends CI_Model
         return count($result) > 0;
     }
 
+    public function doesIdExist($id)
+    {
+        $result = $this->db->where('source_node',$id)->get('node')->result_array();
+        return count($result) > 0;
+    }
+
     public function report($id)
     {
         $result = $this->db->where('id_node', $id)->get('node')->result_array();
