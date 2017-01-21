@@ -1,59 +1,22 @@
 <?php
 class Database extends CI_Model
 {
-    public function doesChatExist($name)
+    public function getNode($id)
     {
-        $this->db->where('url', $name);
-        $query = $this->db->get('chat');
-        if (empty($query->result()))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
+        $result = $this->db->where('id_node', $id)->get('node')->result_array();
 
-    public function getChatId($name)
-    {
-        if ($this->doesChatExist($name))
+        if (count($result))
         {
-            $this->db->where('url', $name);
-            $query = $this->db->get('chat');
-            return $query->row()->id_chat;
+            return $result[0];
         }
-        else
-        {
-            return -1;
-        }
-    }
 
-    public function createChat($name)
-    {
-        if (!$this->doesChatExist($name))
-        {
-            $this->db->insert('chat', array('url' => $name));
-        }
-    }
+        // If the right ID does not exist:
 
-    public function getChat($name, $id)
-    {
-        if ($this->doesChatExist($name))
-        {
-            $this->db->where('chat_id', $this->getChatId($name));
-            $this->db->order_by('id_message', 'ASC');
-            $this->db->where('id_message >', $id);
-            $query = $this->db->get('message');
-            return $query->result_array();
-        }
-    }
+        $result = $this->db->get('node')->result_array();
 
-    public function addChat($name, $content, $user)
-    {
-        if ($this->doesChatExist($name))
+        if (count($result))
         {
-            $this->db->insert('message', array('chat_id' => $this->getChatId($name), 'content' => $content, 'user' => $user));
+            return $result[0];
         }
     }
 }

@@ -23,6 +23,11 @@ class Main extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view("home");
+		$id_node = $this->
+		$id_node = 1;
+
+		$data = array();
+		$data['node'] = $this->database->getNode($id_node);
+		$this->load->view("home", $data);
 	}
 }
