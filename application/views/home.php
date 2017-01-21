@@ -14,7 +14,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         font-weight: 100;
         text-align: center;
     }
-
     .situation {
         width: 30vw;
         margin-left: auto;
@@ -25,7 +24,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         padding: 1rem;
         border-radius: 1rem;
     }
-
     .option {
         width: 20vw;
         border: 1px solid #B3D9FF;
@@ -34,7 +32,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         margin-right: auto;
         margin-top: 1rem;
     }
-
     .option a {
         text-decoration: none;
         color: inherit;
@@ -42,25 +39,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         width: 100%;
         text-align: center;
     }
-
     .option.s1:hover {
         background-color: #45364D;
         color: #CFA1E6;
         border-color: #CFA1E6;
     }
-
     .option.s2:hover {
         background-color: #364D3E;
         color: #A1E6B8;
         border-color: #A1E6B8;
     }
-
     .option.s3:hover {
         background-color: #4D4736;
         color: #E6D4A1;
         border-color: #E6D4A1;
     }
-
     .input {
         background-color: transparent;
         outline: none;
@@ -77,12 +70,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         padding: 0.3rem;
         resize: none;
     }
-
     #action-input {
         display: block;
         margin-top: 3rem;
     }
-
     #description-input {
         display: none;
         border-radius: 1rem;
@@ -93,7 +84,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         padding-bottom: 0.5rem;
         vertical-align:middle;
     }
-
     #submit-new {
         display: none;
         margin-left: auto;
@@ -102,38 +92,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         margin-top: 1.5rem;
         opacity: 0;
     }
-
     #submit-new:hover {
         font-weight: 900;
     }
-
     #report {
-
+        cursor: pointer;
     }
-
     #report:hover {
         font-weight: 900;
     }
-
+    #restart{
+        cursor: pointer;
+    }
+    #restart:hover {
+        font-weight: 900;
+    }
     .warning {
         color: #E65C5C;
         font-size: 0.8rem;
         margin-top: 0.3rem;
         display: none;
     }
-
     ::-webkit-input-placeholder {
         color: #6B8199;
     }
-
     :-moz-placeholder {
         color: #6B8199;
     }
-
     ::-moz-placeholder {
         color: #6B8199;
     }
-
     :-ms-input-placeholder {
         color: #6B8199;
     }
@@ -153,13 +141,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <textarea maxlength = "1025" class = "input" id = "description-input" placeholder = "result"></textarea>
     <div id = "submit-new">Submit</div>
     <div id = "report">Report</div>
+    <div id = "restart">Restart</div>
 </body>
 <script>
     var goToPage = function (id)
     {
         window.location = "<?php echo base_url(); ?>?i=" + id;
     }
-
     var submit = function ()
     {
         if ($("#action-input").val().trim() != "" && $("#description-input").val().trim() != "")
@@ -185,8 +173,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
             });
         }
-    }
-
+    };
     var report = function ()
     {
         $.ajax({
@@ -195,22 +182,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             data: {
                 i: "<?php echo $id_node; ?>"
             },
-            success: function(data) {
-                console.log(data);
+            success: function() {
             }
         });
-    }
-
+    };
+    var restart = function ()
+    {
+        goToPage(1);
+    };
     $("#action-input").focus(function () {
         $("#description-input").css("display", "block");
         $("#description-input").animate({opacity: 1});
         $("#submit-new").css("display", "inline-block");
         $("#submit-new").animate({opacity: 1});
     });
-
     $("#submit-new").click(submit);
     $("#report").click(report);
-
+    $("#restart").click(restart);
     $(document).keydown(function (event)
     {
         switch (event.keyCode)
@@ -220,6 +208,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 break;
         }
     });
-
 </script>
 </html>
