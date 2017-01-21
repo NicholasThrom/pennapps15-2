@@ -41,4 +41,12 @@ class Main extends CI_Controller
 			echo $this->database->addNode($this->input->post("i"), $this->input->post("a"), $this->input->post("d"));
 		}
 	}
+
+	public function fileReport()
+	{
+		if($this->input->post("i"))
+		{
+			$this->database->report($this->input->post("i"));
+		}
+	}
 }

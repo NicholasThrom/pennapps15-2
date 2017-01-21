@@ -107,6 +107,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         font-weight: 900;
     }
 
+    #report {
+
+    }
+
+    #report:hover {
+        font-weight: 900;
+    }
+
     .warning {
         color: #E65C5C;
         font-size: 0.8rem;
@@ -144,6 +152,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class = "warning" id = "action-repeat-warning"></div>
     <textarea maxlength = "1025" class = "input" id = "description-input" placeholder = "result"></textarea>
     <div id = "submit-new">Submit</div>
+    <div id = "report">Report</div>
 </body>
 <script>
     var submit = function ()
@@ -173,6 +182,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     }
 
+    var report = function()
+    {
+        $.ajax({
+            url:"<?php echo base_url(); ?>index.php/main/fileReport",
+            type: "post",
+            data: {
+                i: "<?php echo $id_node; ?>"
+            },
+            success: function(data){
+                console.log(data);
+            }
+        });
+    }
+
     $("#action-input").focus(function () {
         $("#description-input").css("display", "block");
         $("#description-input").animate({opacity: 1});
@@ -181,6 +204,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
 
     $("#submit-new").click(submit);
+    $("#report").click(report);
 
     $(document).keydown(function (event)
     {
