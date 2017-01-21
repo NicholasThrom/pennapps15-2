@@ -22,7 +22,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $.ajax({
             url: "<?php echo base_url(); ?>index.php/main/addNode",
             type: "post",
-            data: {a: $("#action-input").value, d: $("#description-input").value}
+            data: {
+                a: $("#action-input").value,
+                d: $("#description-input").value,
+                i: "<?php echo $id_node; ?>"
+            }
         });
     });
 </script>

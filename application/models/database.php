@@ -19,4 +19,10 @@ class Database extends CI_Model
             return $result[0];
         }
     }
+
+    public function addNode()
+    {
+
+    }
 }
+?>
