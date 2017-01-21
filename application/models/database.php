@@ -30,5 +30,12 @@ class Database extends CI_Model
 
         return $this->db->insert_id();
     }
+
+    public function getOptions($id)
+    {
+        $result = $this->db->where('source_node', $id)->get('node')->result_array();
+
+        return $result;
+    }
 }
 ?>

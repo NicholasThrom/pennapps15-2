@@ -29,6 +29,7 @@ class Main extends CI_Controller
 		$data = array();
 		$data['node'] = $this->database->getNode($id_node);
 		$data['id_node'] = $id_node;
+		$data['options'] = $this->database->getOptions($id_node);
 		$this->load->view("home", $data);
 	}
 
