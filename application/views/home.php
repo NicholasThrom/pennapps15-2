@@ -50,13 +50,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         text-align: center;
     }
 
-    .option.1:hover {
+    .option.s1:hover {
         background-color: red;
     }
-    .option.1:hover {
+    .option.s2:hover {
         background-color: green;
     }
-    .option.1:hover {
+    .option.s3:hover {
         background-color: blue;
     }
     </style>
@@ -66,13 +66,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?php echo $node['description']; ?>
     </div>
     <?php $i = 0; foreach($options as $option) { $i++; ?>
-        <div class = "option <?php echo $i; ?>">
+        <div class = "option s<?php echo $i; ?>">
             <a href = "<?php echo base_url(); ?>?i=<?php echo $option['id_node']?>"><?php echo $option['action']; ?></a>
         </div>
     <?php } ?>
-    New:
     <input id = "action-input"></input>
-    Result:
     <input id = "description-input"></input>
     <div id = "submit-new">Submit</div>
 </body>
