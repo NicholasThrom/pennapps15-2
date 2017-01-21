@@ -69,12 +69,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         width: 20vw;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 1rem;
+        margin-top: 1.5rem;
         color: inherit;
         font-family: inherit;
         font-size: inherit;
         text-align: center;
         padding: 0.3rem;
+        resize: none;
     }
 
     #action-input {
@@ -84,20 +85,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     #description-input {
         display: none;
-        background-color: transparent;
-        outline: none;
-        border: none;
-        border: 1px solid #B3D9FF;
-        width: 20vw;
-        min-height: 4rem;
-        margin-left: auto;
-        margin-right: auto;
-        color: inherit;
-        font-family: inherit;
-        font-size: inherit;
-        text-align: center;
         border-radius: 1rem;
+        border: 1px solid #B3D9FF;
         opacity: 0;
+        resize: none;
+        padding-top: 1.2rem;
+        padding-bottom: 0.5rem;
+        vertical-align:middle;
     }
 
     #submit-new {
@@ -105,7 +99,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         margin-left: auto;
         margin-right: auto;
         cursor: pointer;
-        margin-top: 1rem;
+        margin-top: 1.5rem;
         opacity: 0;
     }
 
@@ -114,19 +108,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
 
-    input::-webkit-input-placeholder {
+    ::-webkit-input-placeholder {
         color: #6B8199;
     }
 
-    input:-moz-placeholder {
+    :-moz-placeholder {
         color: #6B8199;
     }
 
-    input::-moz-placeholder {
+    ::-moz-placeholder {
         color: #6B8199;
     }
 
-    input:-ms-input-placeholder {
+    :-ms-input-placeholder {
         color: #6B8199;
     }
     </style>
@@ -140,8 +134,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <a href = "<?php echo base_url(); ?>?i=<?php echo $option['id_node']?>"><?php echo $option['action']; ?></a>
         </div>
     <?php } ?>
-    <input class = "input" id = "action-input" placeholder = "action"></input>
-    <input class = "input" id = "description-input" placeholder = "result"></input>
+    <input maxlength = "31" class = "input" id = "action-input" placeholder = "action"></input>
+    <textarea maxlength = "1025" class = "input" id = "description-input" placeholder = "result"></textarea>
     <div id = "submit-new">Submit</div>
 </body>
 <script>
