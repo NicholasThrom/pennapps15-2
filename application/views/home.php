@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title>Endless Pathway</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" />
 </head>
 <body>
     <div id = "main-content">
