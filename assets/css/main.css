@@ -99,27 +99,39 @@ body {
     font-weight: 900;
 }
 
-#report {
+#restart {
     cursor: pointer;
-    width: 50%;
+    width: 33%;
     display: inline-block;
     float: right;
     text-align: right;
+}
+
+#restart:hover {
+    font-weight: 900;
+}
+
+#report{
+    cursor: pointer;
+    width: 33%;
+    display: inline-block;
+    float: left;
+    text-align: center;
 }
 
 #report:hover {
     font-weight: 900;
 }
 
-#restart{
+#back-arrow{
     cursor: pointer;
-    width: 50%;
+    width: 33%;
     display: inline-block;
     float: left;
     text-align: left;
 }
 
-#restart:hover {
+#back-arrow:hover {
     font-weight: 900;
 }
 

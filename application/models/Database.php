@@ -3,7 +3,7 @@ class Database extends CI_Model
 {
     public function getNode($id)
     {
-        $result = $this->db->where('id_node', $id)->where('reports <', 3)->get('node')->result_array();
+        $result = $this->db->where('id_node', $id)->where('reports <', MAX_REPORTS)->get('node')->result_array();
         if (count($result))
         {
             $this->db->where('id_node', $id)->update('node', array('clicks'=>min($result[0]['clicks'] + 1, $result[0]['views']), 'hits'=>$result[0]['hits'] + 1));
@@ -35,13 +35,42 @@ class Database extends CI_Model
 
     public function getOptions($id)
     {
-        $result = $this->db->where('source_node', $id)->where('reports <', 3)->get('node')->result_array();
-        shuffle($result);
-        $result = array_slice($result, 0, min(count($result), 3));
+        $list = $this->db->where('source_node', $id)->where('reports <', MAX_REPORTS)->get('node')->result_array();
+        shuffle($list);
+
+        $total = 0;
+
+        for ($i = 0; $i < count($list); $i++)
+        {
+            $list[$i]['columnlessScore'] = $this->score($list[$i]['clicks'], $list[$i]['views']);
+            $total += $list[$i]['columnlessScore'];
+        }
+
+        $result = array();
+
+        for ($iteration = 0; $iteration < 3 && $iteration < count($list); $iteration++)
+        {
+            $randomValue = rand(1, $total);
+            $subtotal = 0;
+
+            for ($i = 0; $i < count($list); $i++)
+            {
+                $subtotal += $list[$i]['columnlessScore'];
+                if ($subtotal >= $randomValue)
+                {
+                    $total -= $list[$i]['columnlessScore'];
+                    $list[$i]['columnlessScore'] = 0;
+                    $result[] = $list[$i];
+                    break;
+                }
+            }
+        }
+
         foreach($result as $res)
         {
             $this->db->where('id_node',$res['id_node'])->update('node',array('views'=>$res['views'] + 1, 'hits'=>$res['hits'] + 1));
         }
+
         return $result;
     }
 
@@ -59,7 +88,7 @@ class Database extends CI_Model
 
     public function report($id)
     {
-        $result = $this->db->where('id_node', $id)->where('reports <', 3)->get('node')->result_array();
+        $result = $this->db->where('id_node', $id)->where('reports <', MAX_REPORTS)->get('node')->result_array();
         if (count($result) && $result[0]['reports'] >= 0)
         {
             $this->db->where('id_node',$result[0]['id_node'])->update('node', array('reports'=>$result[0]['reports'] + 1));
@@ -80,6 +109,11 @@ class Database extends CI_Model
         }
 
         return $count;
+    }
+
+    public function score($clicks, $views)
+    {
+        return round(100 * (min($clicks, $views) + 7) / ($views + 5) + 0.05);
     }
 }
 ?>
