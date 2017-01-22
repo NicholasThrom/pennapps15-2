@@ -34,6 +34,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <textarea maxlength = "1025" class = "input" id = "description-input" placeholder = "result"></textarea>
 
+        <div class = "warning" id = "missing-result-warning"></div>
+
         <div id = "submit-new">Submit</div>
 
         <div class = "gap">
@@ -76,6 +78,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     }
                 }
             });
+        }
+        else
+        {
+            $("#missing-result-warning").css("display", "block");
+            $("#missing-result-warning").html("Please fill out both fields.");
         }
     };
 
