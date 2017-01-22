@@ -9,33 +9,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
 </head>
 <body>
-    <div id = "buttons">
-        <div id = "back-arrow">Back</div>
+    <div id = "main-content">
+        <div id = "buttons">
+            <div id = "back-arrow">Back</div>
 
-        <?php if ($node['reports'] >= 0) { ?>
-            <div id = "report">Report</div>
+            <div id = "restart">Restart</div>
+        </div>
+
+        <div class = "situation">
+            <?php echo $node['description']; ?>
+        </div>
+
+        <?php $i = 0; foreach($options as $option) { $i++; ?>
+            <div onclick = "goToPage(<?php echo $option['id_node']?>);" class = "option s<?php echo $i; ?>">
+                <?php echo $option['action']; ?>
+            </div>
         <?php } ?>
 
-        <div id = "restart">Restart</div>
-    </div>
+        <input maxlength = "31" class = "input" id = "action-input" placeholder = "action"></input>
 
-    <div class = "situation">
-        <?php echo $node['description']; ?>
-    </div>
+        <div class = "warning" id = "action-repeat-warning"></div>
 
-    <?php $i = 0; foreach($options as $option) { $i++; ?>
-        <div onclick = "goToPage(<?php echo $option['id_node']?>);" class = "option s<?php echo $i; ?>">
-            <?php echo $option['action']; ?>
+        <textarea maxlength = "1025" class = "input" id = "description-input" placeholder = "result"></textarea>
+
+        <div id = "submit-new">Submit</div>
+
+        <div class = "gap">
         </div>
-    <?php } ?>
+    </div>
 
-    <input maxlength = "31" class = "input" id = "action-input" placeholder = "action"></input>
-
-    <div class = "warning" id = "action-repeat-warning"></div>
-
-    <textarea maxlength = "1025" class = "input" id = "description-input" placeholder = "result"></textarea>
-
-    <div id = "submit-new">Submit</div>
+    <div id = "footer">
+        <?php if ($node['reports'] >= 0) { ?>
+            <div class = "footer-item right" id = "report">Report Entry</div>
+        <?php } ?>
+    </div>
 </body>
 <script>
     var goToPage = function (id)
@@ -120,5 +127,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
 
 </script>
-<script src = "<?php echo base_url(); ?>assets/js/main.js"></script>
 </html>
