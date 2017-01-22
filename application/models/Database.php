@@ -28,7 +28,8 @@ class Database extends CI_Model
         $this->db->insert('node', array(
             'source_node' => $parent,
             'action' => htmlspecialchars($action),
-            'description' => htmlspecialchars($description)
+            'description' => htmlspecialchars($description),
+            'ip' => $_SERVER['REMOTE_ADDR']
         ));
         return $this->db->insert_id();
     }
