@@ -1,6 +1,20 @@
 <?php
 class Database extends CI_Model
 {
+    public function checkIp($ip)
+    {
+        $results = $this->db->where('ip', $ip)->get('banned_ips')->result_array();
+        if (count($results))
+        {
+            echo $results[0]['reason'];
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public function getNode($id)
     {
         $result = $this->db->where('id_node', $id)->where('reports <', MAX_REPORTS)->get('node')->result_array();

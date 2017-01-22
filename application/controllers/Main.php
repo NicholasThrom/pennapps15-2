@@ -23,40 +23,52 @@ class Main extends CI_Controller
 
 	public function index()
 	{
-		$id_node = $this->input->get("i");
-		$id_node = $id_node != null ? $id_node : 1;
-
-		if ($id_node < 1)
+		if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
 		{
-			$id_node = 1;
-		}
+			$id_node = $this->input->get("i");
+			$id_node = $id_node != null ? $id_node : 1;
 
-		$data = array();
-		$data['node'] = $this->database->getNode($id_node);
-		$id_node = $data['node']['id_node'];
-		$data['id_node'] = $id_node;
-		$data['options'] = $this->database->getOptions($id_node);
-		$this->load->view("home", $data);
+			if ($id_node < 1)
+			{
+				$id_node = 1;
+			}
+
+			$data = array();
+			$data['node'] = $this->database->getNode($id_node);
+			$id_node = $data['node']['id_node'];
+			$data['id_node'] = $id_node;
+			$data['options'] = $this->database->getOptions($id_node);
+			$this->load->view("home", $data);
+		}
 	}
 
 	public function addNode()
 	{
-		if ($this->input->post("a") != null && $this->input->post("d") != null && $this->input->post("i") != null)
+		if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
 		{
-			echo $this->database->addNode($this->input->post("i"), $this->input->post("a"), $this->input->post("d"));
+			if ($this->input->post("a") != null && $this->input->post("d") != null && $this->input->post("i") != null)
+			{
+				echo $this->database->addNode($this->input->post("i"), $this->input->post("a"), $this->input->post("d"));
+			}
 		}
 	}
 
 	public function fileReport()
 	{
-		if($this->input->post("i"))
+		if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
 		{
-			$this->database->report($this->input->post("i"));
+			if($this->input->post("i"))
+			{
+				$this->database->report($this->input->post("i"));
+			}
 		}
 	}
 
 	public function trimTree()
 	{
-		echo "Deleted ".$this->database->removeFreeNodes()." nodes.";
+		if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
+		{
+			echo "Deleted ".$this->database->removeFreeNodes()." nodes.";
+		}
 	}
 }
