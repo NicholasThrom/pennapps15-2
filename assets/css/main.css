@@ -13,6 +13,12 @@ body {
     margin: 0;
 }
 
+@media (max-width: 500px) {
+    body {
+        background-color: red;
+    }
+}
+
 /* MAIN BOXES */
 .situation {
     width: calc(20vw - 2rem + 10rem);
