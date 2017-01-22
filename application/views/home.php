@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         <?php } ?>
 
-        <input maxlength = "63" class = "input" id = "action-input" placeholder = "action"></input>
+        <input maxlength = "57" class = "input" id = "action-input" placeholder = "action"></input>
 
         <div class = "warning" id = "action-repeat-warning"></div>
 
