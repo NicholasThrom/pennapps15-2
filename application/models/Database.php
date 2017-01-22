@@ -43,7 +43,8 @@ class Database extends CI_Model
             'source_node' => $parent,
             'action' => htmlspecialchars($action),
             'description' => htmlspecialchars($description),
-            'ip' => $_SERVER['REMOTE_ADDR']
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'timestamp' => date('Y-m-d H:i:s')
         ));
         return $this->db->insert_id();
     }
