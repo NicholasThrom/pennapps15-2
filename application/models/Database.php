@@ -1,6 +1,8 @@
 <?php
 class Database extends CI_Model
 {
+    // IP Functions
+
     public function checkIp($ip)
     {
         $results = $this->db->where('ip', $ip)->get('banned_ips')->result_array();
@@ -14,6 +16,24 @@ class Database extends CI_Model
             return true;
         }
     }
+
+    // Database functions
+
+    // Checks
+
+    public function doesExist($id, $action)
+    {
+        $result = $this->db->where('source_node',$id)->where('action',$action)->get('node')->result_array();
+        return count($result) > 0;
+    }
+
+    public function doesIdExist($id)
+    {
+        $result = $this->db->where('id_node',$id)->get('node')->result_array();
+        return count($result) > 0;
+    }
+
+    // Gets
 
     public function getNode($id)
     {
@@ -30,23 +50,6 @@ class Database extends CI_Model
             $this->db->where('id_node', $id)->update('node', array('clicks'=>min($result[0]['clicks'] + 1, $result[0]['views']), 'hits'=>$result[0]['hits'] + 1));
             return $result[0];
         }
-    }
-
-    public function addNode($parent, $action, $description)
-    {
-        if($this->doesExist($parent,$action))
-        {
-            return -1;
-        }
-
-        $this->db->insert('node', array(
-            'source_node' => $parent,
-            'action' => htmlspecialchars($action),
-            'description' => htmlspecialchars($description),
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'timestamp' => date('Y-m-d H:i:s')
-        ));
-        return $this->db->insert_id();
     }
 
     public function getOptions($id)
@@ -90,25 +93,37 @@ class Database extends CI_Model
         return $result;
     }
 
-    public function doesExist($id, $action)
+    public function getLog($id)
     {
-        $result = $this->db->where('source_node',$id)->where('action',$action)->get('node')->result_array();
-        return count($result) > 0;
-    }
+        $data = array();
 
-    public function doesIdExist($id)
-    {
-        $result = $this->db->where('id_node',$id)->get('node')->result_array();
-        return count($result) > 0;
-    }
-
-    public function report($id)
-    {
-        $result = $this->db->where('id_node', $id)->where('reports <', MAX_REPORTS)->get('node')->result_array();
-        if (count($result) && $result[0]['reports'] >= 0)
+        while ($id >= 0)
         {
-            $this->db->where('id_node',$result[0]['id_node'])->update('node', array('reports'=>$result[0]['reports'] + 1));
+            $newNode = $this->getNode($id);
+            $data[] = $newNode;
+            $id = $newNode["source_node"];
         }
+
+        return $data;
+    }
+
+    // Sets
+
+    public function addNode($parent, $action, $description)
+    {
+        if($this->doesExist($parent,$action))
+        {
+            return -1;
+        }
+
+        $this->db->insert('node', array(
+            'source_node' => $parent,
+            'action' => htmlspecialchars($action),
+            'description' => htmlspecialchars($description),
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'timestamp' => date('Y-m-d H:i:s')
+        ));
+        return $this->db->insert_id();
     }
 
     public function removeFreeNodes()
@@ -126,6 +141,17 @@ class Database extends CI_Model
 
         return $count;
     }
+
+    public function report($id)
+    {
+        $result = $this->db->where('id_node', $id)->where('reports <', MAX_REPORTS)->get('node')->result_array();
+        if (count($result) && $result[0]['reports'] >= 0)
+        {
+            $this->db->where('id_node',$result[0]['id_node'])->update('node', array('reports'=>$result[0]['reports'] + 1));
+        }
+    }
+
+    // Others
 
     public function score($clicks, $views)
     {

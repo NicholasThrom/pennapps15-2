@@ -37,6 +37,25 @@ body {
     overflow: hidden;
 }
 
+.block {
+    width: calc(20vw - 2rem + 10rem);
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.result {
+    margin-right: auto;
+    margin-left: 0;
+    text-align: left;
+}
+
+.action {
+    margin-right: 0;
+    margin-left: auto;
+    text-align: right;
+}
+
 /* sub-hovers */
 .option.s1:hover {
     background-color: #45364D;

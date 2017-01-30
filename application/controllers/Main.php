@@ -4,71 +4,102 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Main extends CI_Controller
 {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+    /**
+     * Index Page for this controller.
+     *
+     * Maps to the following URL
+     *         http://example.com/index.php/welcome
+     *    - or -
+     *         http://example.com/index.php/welcome/index
+     *    - or -
+     * Since this controller is set as the default controller in
+     * config/routes.php, it's displayed at http://example.com/
+     *
+     * So any other public methods not prefixed with an underscore will
+     * map to /index.php/welcome/<method_name>
+     * @see https://codeigniter.com/user_guide/general/urls.html
+     */
 
 
-	public function index()
-	{
-		if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
-		{
-			$id_node = $this->input->get("i");
-			$id_node = $id_node != null ? $id_node : 1;
+    public function index()
+    {
+        if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
+        {
+            $data = array();
+            $data['headdata'] = array();
+            $data['view'] = "home";
+            $data['viewdata'] = array();
+            $data['footdata'] = array();
 
-			if ($id_node < 1)
-			{
-				$id_node = 1;
-			}
+            $id_node = $this->input->get("i");
+            $id_node = $id_node != null ? $id_node : 1;
 
-			$data = array();
-			$data['node'] = $this->database->getNode($id_node);
-			$id_node = $data['node']['id_node'];
-			$data['id_node'] = $id_node;
-			$data['options'] = $this->database->getOptions($id_node);
-			$this->load->view("home", $data);
-		}
-	}
+            if ($id_node < 1)
+            {
+                $id_node = 1;
+            }
 
-	public function addNode()
-	{
-		if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
-		{
-			if ($this->input->post("a") != null && $this->input->post("d") != null && $this->input->post("i") != null)
-			{
-				echo $this->database->addNode($this->input->post("i"), $this->input->post("a"), $this->input->post("d"));
-			}
-		}
-	}
+            $data['viewdata']['node'] = $this->database->getNode($id_node);
+            $id_node = $data['viewdata']['node']['id_node'];
+            $data['viewdata']['id_node'] = $id_node;
+            $data['viewdata']['options'] = $this->database->getOptions($id_node);
+            $this->load->view("template", $data);
+        }
+    }
 
-	public function fileReport()
-	{
-		if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
-		{
-			if($this->input->post("i"))
-			{
-				$this->database->report($this->input->post("i"));
-			}
-		}
-	}
+    public function log()
+    {
+        if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
+        {
+            $data = array();
+            $data['headdata'] = array();
+            $data['view'] = "log";
+            $data['viewdata'] = array();
+            $data['footdata'] = array();
 
-	public function trimTree()
-	{
-		if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
-		{
-			echo "Deleted ".$this->database->removeFreeNodes()." nodes.";
-		}
-	}
+            $id_node = $this->input->get("i");
+            $id_node = $id_node != null ? $id_node : 1;
+
+            if ($id_node < 1)
+            {
+                $id_node = 1;
+            }
+
+            $data['viewdata']['nodes'] = $this->database->getLog($id_node);
+            $this->load->view("template", $data);
+        }
+    }
+
+    // AJAX Pages
+
+    public function addNode()
+    {
+        if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
+        {
+            if ($this->input->post("a") != null && $this->input->post("d") != null && $this->input->post("i") != null)
+            {
+                echo $this->database->addNode($this->input->post("i"), $this->input->post("a"), $this->input->post("d"));
+            }
+        }
+    }
+
+
+    public function fileReport()
+    {
+        if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
+        {
+            if($this->input->post("i"))
+            {
+                $this->database->report($this->input->post("i"));
+            }
+        }
+    }
+
+    public function trimTree()
+    {
+        if ($this->database->checkIp($_SERVER['REMOTE_ADDR']))
+        {
+            echo "Deleted ".$this->database->removeFreeNodes()." nodes.";
+        }
+    }
 }
