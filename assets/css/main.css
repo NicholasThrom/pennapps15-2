@@ -176,7 +176,7 @@ body {
 }
 
 .footer-item.left {
-    min-width: 20vh;
+    min-width: 20vw;
     padding-left: 1rem;
     float: left;
     color: #6B8299;
@@ -185,7 +185,7 @@ body {
 }
 
 .footer-item.right {
-    min-width: 20vh;
+    min-width: 20vw;
     padding-right: 1rem;
     float: right;
     color: #6B8299;

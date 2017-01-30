@@ -37,6 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php if ($node['reports'] >= 0) { ?>
             <div class = "footer-item right" id = "report">Report Entry</div>
         <?php } ?>
+        <div class = "footer-item right" id = "log">Log</div>
     </div>
 </body>
 
@@ -44,6 +45,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     var goToPage = function (id)
     {
         window.location = "<?php echo base_url(); ?>?i=" + id;
+    };
+
+    var goToLog = function (id)
+    {
+        window.location = "<?php echo base_url(); ?>/index.php/main/log/?i=" + id;
     };
 
     var submit = function ()
@@ -105,6 +111,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         goToPage(<?php echo $node['source_node']; ?>);
     };
 
+    var log = function ()
+    {
+        goToLog(<?php echo $id_node; ?>);
+    };
+
     $("#action-input").focus(function () {
         $("#description-input").css("display", "block");
         $("#description-input").animate({opacity: 1});
@@ -116,6 +127,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $("#report").click(report);
     $("#restart").click(restart);
     $("#back-arrow").click(back);
+    $("#log").click(log);
 
     $(document).keydown(function (event)
     {
