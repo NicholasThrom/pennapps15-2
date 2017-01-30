@@ -13,11 +13,24 @@
                 <?php } ?>
             </div>
         <?php } ?>
+        <div class = "gap"></div>
+        <div id = "return">Return</div>
+        <div class = "gap"></div>
     </div>
-
-    <div class = "gap"></div>
 </body>
 
 <script>
+    var goToPage = function (id)
+    {
+        window.location = "<?php echo base_url(); ?>?i=" + id;
+    };
+
+    var freturn = function ()
+    {
+        goToPage(<?php echo $nodes[0]['id_node']; ?>);
+    };
+
+    $("#return").click(freturn);
+
     window.scrollTo(0, document.body.scrollHeight);
 </script>
