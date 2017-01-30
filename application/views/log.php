@@ -14,6 +14,8 @@
             </div>
         <?php } ?>
     </div>
+
+    <div class = "gap"></div>
 </body>
 
 <script>
