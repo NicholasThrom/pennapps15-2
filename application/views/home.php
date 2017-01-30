@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     var goToLog = function (id)
     {
-        window.location = "<?php echo base_url(); ?>/index.php/main/log/?i=" + id;
+        window.location = "<?php echo base_url(); ?>index.php/main/log/?i=" + id;
     };
 
     var submit = function ()
