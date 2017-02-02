@@ -2,14 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <body>
-    <div id = "main-content">
+    <div class = "main">
         <div id = "buttons">
-            <div id = "back-arrow">Back</div>
+            <div class = "button" id = "back-arrow">Back</div>
 
-            <div id = "restart">Restart</div>
+            <div class = "button" id = "restart">Restart</div>
         </div>
 
-        <div class = "situation">
+        <div class = "outline situation-block">
             <?php echo $node['description']; ?>
         </div>
 
@@ -19,25 +19,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         <?php } ?>
 
-        <input maxlength = "57" class = "input" id = "action-input" placeholder = "action"></input>
+        <input maxlength = "<?php echo MAX_ACTION; ?>" class = "input" id = "action-input" placeholder = "action"></input>
 
         <div class = "warning" id = "action-repeat-warning"></div>
 
-        <textarea maxlength = "1025" class = "input" id = "description-input" placeholder = "result"></textarea>
+        <textarea maxlength = "<?php echo MAX_DESCRIPTION; ?>" class = "input" id = "description-input" placeholder = "result"></textarea>
 
         <div class = "warning" id = "missing-result-warning"></div>
 
-        <div id = "submit-new">Submit</div>
+        <div class = "button" id = "submit-new">Submit</div>
 
-        <div class = "gap">
-        </div>
+        <div class = "gap"></div>
     </div>
 
     <div id = "footer">
+
         <?php if ($node['reports'] >= 0) { ?>
-            <div class = "footer-item right" id = "report">Report Entry</div>
+            <div class = "footer-item right button" id = "report">Report Entry</div>
         <?php } ?>
-        <div class = "footer-item right" id = "log">Log</div>
+
+        <div class = "footer-item right button" id = "log">Log</div>
+
     </div>
 </body>
 
@@ -49,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     var goToLog = function (id)
     {
-        window.location = "<?php echo base_url(); ?>index.php/main/log/?i=" + id;
+        window.location = "<?php echo base_url(); ?>index.php/node/log/?i=" + id;
     };
 
     var submit = function ()
@@ -57,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if ($("#action-input").val().trim() != "" && $("#description-input").val().trim() != "")
         {
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/main/addNode",
+                url: "<?php echo base_url(); ?>index.php/ajax/addNode",
                 type: "post",
                 data: {
                     a: $("#action-input").val(),
@@ -87,7 +89,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     var report = function ()
     {
         $.ajax({
-            url:"<?php echo base_url(); ?>index.php/main/fileReport",
+            url:"<?php echo base_url(); ?>index.php/ajax/fileReport",
             type: "post",
             data: {
                 i: "<?php echo $id_node; ?>"

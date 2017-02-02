@@ -87,3 +87,5 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 /* CUSTOM CONSTANTS */
 define('MAX_REPORTS', 3);
+define('MAX_DESCRIPTION', 1000);
+define('MAX_ACTION', 57);

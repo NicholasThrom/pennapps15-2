@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://EndlessPathway.com';
+$config['base_url'] = 'http://localhost:8888/pennapps15-2/';
 
 /*
 |--------------------------------------------------------------------------
@@ -324,7 +324,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'b6b39ecc7b13a1a46acdedd80f7b1236';
 
 /*
 |--------------------------------------------------------------------------

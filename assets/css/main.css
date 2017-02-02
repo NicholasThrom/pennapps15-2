@@ -1,4 +1,4 @@
-/* EVERYTHING */
+/* Site-wide */
 html {
     padding: 0;
 }
@@ -6,32 +6,80 @@ html {
 body {
     background-color: #36414D;
     color: #B3D9FF;
+
     font-family: "Lucida Console", Monaco, monospace;
     font-weight: 100;
+
     text-align: center;
+
     padding: 0;
     margin: 0;
 }
 
 /* MAIN BOXES */
-.situation {
+.gap {
+    height: 3rem;
+}
+
+.sgap {
+    height: 1rem;
+}
+
+.vgap {
+    height: 10vh;
+}
+
+.button {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+.item {
     width: calc(20vw - 2rem + 10rem);
     margin-left: auto;
+    width: calc(20vw - 2rem + 10rem);
     margin-right: auto;
-    text-align: center;
-    margin-top: 0.3rem;
+}
+
+.button:hover {
+    font-weight: 900;
+}
+
+.outline {
     border: 1px solid #B3D9FF;
     padding: 1rem;
     border-radius: 1rem;
 }
 
-.option {
-    width: calc(15vw - 2rem + 10rem);
-    border: 1px solid #B3D9FF;
-    padding: 0.5rem;
+.column {
+    border-left: 1px solid #B3D9FF;
+    border-right: 1px solid #B3D9FF;
+    padding: 1rem;
+    border-radius: 0rem;
+}
+
+.situation-block {
+    width: calc(20vw - 2rem + 10rem);
+
     margin-left: auto;
     margin-right: auto;
+
+    text-align: center;
+
+    margin-top: 0.3rem;
+}
+
+.option {
+    width: calc(15vw - 2rem + 10rem);
+
     margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem;
+
+    border: 1px solid #B3D9FF;
+
     cursor: pointer;
     word-break: break-word;
     overflow: hidden;
@@ -79,7 +127,6 @@ body {
     border-color: #E6D4A1;
 }
 
-/* CUSTOM RESPONSES */
 .input {
     background-color: transparent;
     outline: none;
@@ -96,6 +143,10 @@ body {
     padding: 0.3rem;
     resize: none;
     border-radius: none;
+}
+
+.thin {
+    width: calc(8vw - 1.6rem + 10rem);
 }
 
 #action-input {
@@ -119,50 +170,29 @@ body {
     display: none;
     margin-left: auto;
     margin-right: auto;
-    cursor: pointer;
     margin-top: 1.5rem;
     opacity: 0;
 }
 
-#submit-new:hover {
-    font-weight: 900;
-}
-
 #restart {
-    cursor: pointer;
     width: 33%;
     display: inline-block;
     float: right;
     text-align: right;
 }
 
-#restart:hover {
-    font-weight: 900;
-}
-
 #back-arrow{
-    cursor: pointer;
     width: 33%;
-    display: inline-block;
     float: left;
     text-align: left;
 }
 
-#back-arrow:hover {
-    font-weight: 900;
-}
-
 #return {
-    cursor: pointer;
     width: 33%;
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-}
-
-#return:hover {
-    font-weight: 900;
 }
 
 /* UPPER BUTTON CONTAINER */
@@ -174,16 +204,13 @@ body {
 }
 
 /* FOOTER */
-.gap {
-    height: 3rem;
-}
 
 #footer {
     width: 100%;
     height: 2rem;
 }
 
-#main-content {
+.main {
     min-height: calc(90vh - 2rem);
     padding-top: 10vh;
 }
@@ -207,10 +234,6 @@ body {
 }
 
 #report {
-}
-
-#report:hover {
-    font-weight: 900;
 }
 
 /* MESSAGES */
