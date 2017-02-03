@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php
 
-    $this->load->view("head", $headdata);
+    $this->load->view("template/head", $headdata);
     $this->load->view($view, $viewdata);
-    $this->load->view("foot", $footdata);
+    $this->load->view("template/foot", $footdata);
 
 ?>

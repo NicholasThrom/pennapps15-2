@@ -1,25 +1,6 @@
 <?php
-class Database extends CI_Model
-{
-    // IP Functions
-
-    public function checkIp($ip)
-    {
-        $results = $this->db->where('ip', $ip)->get('banned_ips')->result_array();
-        if (count($results))
-        {
-            echo $results[0]['reason'];
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
-    // Database functions
-
-    // Checks
+class Node_Model extends CI_Model
+{// Checks
 
     public function doesExist($id, $action)
     {
@@ -151,7 +132,7 @@ class Database extends CI_Model
         }
     }
 
-    // Others
+    // Calculations
 
     public function score($clicks, $views)
     {
