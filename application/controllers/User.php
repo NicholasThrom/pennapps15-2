@@ -7,15 +7,16 @@ class User extends CI_Controller
     {
         if ($this->user_model->checkIp($_SERVER['REMOTE_ADDR']))
         {
-            $data = array();
-            $data['headdata'] = array();
-            $data['viewdata'] = array();
-            $data['view'] = 'user/login';
-            $data['footdata'] = array();
-
             $user = $this->user_model->user();
 
-            $this->load->view("template", $data);
+            if ($user != null)
+            {
+                $this->info();
+            }
+            else
+            {
+                $this->login();
+            }
         }
     }
 

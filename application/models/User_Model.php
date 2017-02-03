@@ -34,13 +34,18 @@ class User_Model extends CI_Model
 
     public function userCreate($username, $password)
     {
-        if (!$this->userExists($username))
+        if (!$this->userExists($username) && $password != "")
         {
             $this->db->insert('user', array(
                 'username' => $username,
                 'password_hash' => $this->passwordEncode($password),
                 'status' => 'default'
             ));
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

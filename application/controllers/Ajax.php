@@ -48,4 +48,25 @@ class Ajax extends CI_Controller
             $this->user_model->logout();
         }
     }
+
+
+    public function createUser()
+    {
+        if ($this->user_model->checkIp($_SERVER['REMOTE_ADDR']))
+        {
+            if($this->input->post("u") && $this->input->post("p"))
+            {
+                $this->user_model->logout();
+
+                $result = $this->user_model->userCreate($this->input->post("u"), $this->input->post("p")) ? 1 : "Username already taken.";
+
+                if ($result = 1)
+                {
+                    $this->user_model->login($this->input->post("u"), $this->input->post("p"));
+                }
+
+                echo $result;
+            }
+        }
+    }
 }
